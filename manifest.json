@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+  "name": "Save Pinned",
+  "version": "0.1",
+
+  "description": "Save your current pinned tabs. You can load saved pinned tabs easily.",
+  "icons": {
+    "128": "images/icon_128.png",
+    "64": "images/icon_64.png",
+    "32": "images/icon_32.png"
+  },
+
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+
+  "browser_action": {
+    "default_icon": {
+      "128": "images/icon_128.png",
+      "64": "images/icon_64.png",
+      "32": "images/icon_32.png"
+    },
+    "default_popup": "popup.html",
+    "default_title": "Save pinned tabs"
+  }
+}
