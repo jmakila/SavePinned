@@ -64,6 +64,12 @@ button:active {
 	max-height: 300px;
 	overflow: auto;
 }
+#placeholder {
+	padding: 1em;
+	text-align: center;
+	font-style: italic;
+	color: #aaa;
+}
 .load-row {
 	padding: 0.5em;
 	display: flex;

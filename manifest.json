@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Save Pinned",
-  "version": "0.1",
+  "version": "0.8",
 
   "description": "Save your current pinned tabs. You can load saved pinned tabs easily.",
   "icons": {
