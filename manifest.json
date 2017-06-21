@@ -1,7 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Save Pinned",
-  "version": "0.8.0",
+  "name": "Save Pinned Tabs",
+  "short_name": "Save Pinned",
+  "version": "0.8.2",
 
   "description": "Save your current pinned tabs as a set. Sets can be loaded later on any window.",
   "icons": {
