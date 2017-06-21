@@ -1,88 +1,14 @@
-
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
-body {
-	font-size: 12pt;
-	font-family: Calibri;
-	color: #333;
-}
-
-h2 {
-	font-size: 1.1em;
-	padding: 0.3em;
-	background-color: #eee;
-}
-h2 span {
-	font-weight: normal;
-	font-style: italic;
-	color: #999;
-	float: right;
-	font-size: 0.8em;
-	line-height: 1.5em;
-}
-
-
-p {
-	padding: 0.5em;
-}
-p.save-row {
-	display: flex;
-}
-
-input {
-	font-size: 1em;
-	line-height: 2em;
-	height: 2em;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	padding: 0 0.5em;
-	width: 25em;
-	outline: none;
-	float: left;
-}
-button {
-	font-size: 1em;
-	line-height: 2em;
-	height: 2em;
-	background-color: #edcd3e;
-	border: none;
-	border-radius: 4px;
-	padding: 0 0.8em;
-	float: right;
-	margin-left: 0.5em;
-	outline: none;
-}
-
-button:active {
-	background-color: #af912c;
-}
-
-#load-area {
-	max-height: 300px;
-	overflow: auto;
-}
-#placeholder {
-	padding: 1em;
-	text-align: center;
-	font-style: italic;
-	color: #aaa;
-}
-.load-row {
-	padding: 0.5em;
-	display: flex;
-	width: 100%;
-	border-bottom: 1px solid #eee;
-}
-.load-row span {
-	font-size: 1em;
-	line-height: 2em;
-	height: 2em;
-	width: 100%;
-}
-.load-row img {
-	float: right;
-	margin: 0.5em 0.5em 0.5em 1em;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-size: 12pt; font-family: Calibri; color: #333; }
+h2 { font-size: 1.1em; padding: 0.3em; background-color: #eee; }
+h2 span { font-weight: normal; font-style: italic; color: #999; float: right; font-size: 0.8em; line-height: 1.5em; }
+p { padding: 0.5em; }
+p.save-row { display: flex; }
+input { font-size: 1em; line-height: 2em; height: 2em; border: 1px solid #ccc; border-radius: 4px; padding: 0 0.5em; width: 25em; outline: none; float: left; }
+button { font-size: 1em; line-height: 2em; height: 2em; background-color: #edcd3e; border: none; border-radius: 4px; padding: 0 0.8em; float: right; margin-left: 0.5em; outline: none; }
+button:active { background-color: #af912c; }
+#load-area { max-height: 300px; overflow: auto; }
+#placeholder { padding: 1em; text-align: center; font-style: italic; color: #aaa; }
+.load-row { padding: 0.5em; display: flex; width: 100%; border-bottom: 1px solid #eee; }
+.load-row span { font-size: 1em; line-height: 2em; height: 2em; width: 100%; }
+.load-row img { float: right; margin: 0.5em 0.5em 0.5em 1em; }
