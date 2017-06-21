@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
   "name": "Save Pinned",
-  "version": "0.8",
+  "version": "0.8.0",
 
-  "description": "Save your current pinned tabs. You can load saved pinned tabs easily.",
+  "description": "Save your current pinned tabs as a set. Sets can be loaded later on any window.",
   "icons": {
     "128": "images/icon_128.png",
     "64": "images/icon_64.png",
