@@ -24,5 +24,9 @@
     },
     "default_popup": "popup.html",
     "default_title": "Save pinned tabs"
+  },
+
+  "background": {
+    "scripts": ["onload.js"]
   }
 }
