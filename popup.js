@@ -47,7 +47,8 @@ function load_set(id) {
 }
 
 function delete_set(id) {
-	chrome.storage.sync.remove(id, function () {
+	var conf = confirm("Do you really want to delete this tab set?");
+	if (conf) chrome.storage.sync.remove(id, function () {
 		window.location.href = "popup.html";
 	});
 }
