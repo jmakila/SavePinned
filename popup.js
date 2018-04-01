@@ -13,6 +13,7 @@ function save_set(name) {
 			var uid = window.btoa(name);
 			saveObj[uid] = {
 				set_name: name,
+				autoload: false,
 				tabs: urilist
 			};
 			chrome.storage.sync.set(saveObj, function () {
@@ -58,7 +59,10 @@ function get_sets() {
 				var row = sets[property];
 				var template = '\
 				<div class="load-row" data-id="'+property+'">\
-					<span>'+row.set_name+'</span><button class="set-load">Load</button><img class="set-delete" src="images/delete_16.png">\
+					<span>'+row.set_name+'</span>\
+					<label><input type="checkbox" name="autoload" class="autoload-radio" value="'+property+'" '+(row.autoload ? 'checked' : '')+'> Autoload</label>\
+					<button class="set-load">Load</button>\
+					<img class="set-delete" src="images/delete_16.png">\
 				</div>';
 				var area = document.getElementById('load-area');
 				area.insertAdjacentHTML('beforeend', template);
@@ -85,6 +89,29 @@ function get_sets() {
 			});
 		}
 
+		// autoload radios
+		var radioElements = document.getElementsByClassName('autoload-radio');
+		for (var i=0; i < radioElements.length; i++) {
+			radioElements[i].addEventListener('click', function () {
+				if (this.checked) set_autoload(this.value);
+				else set_autoload(false);
+			});
+		}
+
+	});
+}
+
+function set_autoload(id) {
+	chrome.storage.sync.get(null, function (sets) {
+		for (var property in sets) {
+			if (sets.hasOwnProperty(property)) {
+				if (id && property == id) sets[property].autoload = true;
+				else sets[property].autoload = false;
+			}
+		}
+		chrome.storage.sync.set(sets, function () {
+			window.location.href = "popup.html";
+		});
 	});
 }
 
