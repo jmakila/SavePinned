@@ -14,7 +14,6 @@ var Sets = (function () {
         });
     }
 
-
     return {
         save: function (name, autoload) {
             var urilist = [];

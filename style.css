@@ -12,17 +12,7 @@ button:active { background-color: #af912c; }
 .load-row { padding: 0.5em; display: flex; width: 100%; border-bottom: 1px solid #eee; }
 .load-row span { font-size: 1em; line-height: 2em; height: 2em; width: 100%; overflow: hidden; white-space: nowrap; }
 .load-row img { float: right; margin: 0.5em 0.5em 0.5em 1em; }
-.load-row label {
-	width: 30%;
-	padding: 5px;
-}
-.load-row label input {
-	vertical-align: -2px;
-}
-.load-row.active {
-	background-color: #dfe8f5;
-}
-.load-row.active span {
-	width: 73%;
-	font-weight: bold;
-}
+.load-row label { width: 30%; padding: 5px; }
+.load-row label input { vertical-align: -2px; }
+.load-row.active { background-color: #dfe8f5; }
+.load-row.active span { width: 73%; font-weight: bold; }
