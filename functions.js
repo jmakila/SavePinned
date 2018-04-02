@@ -16,7 +16,7 @@ var Sets = (function () {
 
 
     return {
-        save: function (name) {
+        save: function (name, autoload) {
             var urilist = [];
         	chrome.tabs.query({
         		pinned: true,
@@ -30,7 +30,7 @@ var Sets = (function () {
         			var uid = window.btoa(name);
         			saveObj[uid] = {
         				set_name: name,
-        				autoload: false,
+        				autoload: autoload || 0,
         				tabs: urilist
         			};
         			chrome.storage.sync.set(saveObj, function () {
@@ -74,10 +74,10 @@ var Sets = (function () {
         			if (sets.hasOwnProperty(property)) {
         				var row = sets[property];
         				var template = '\
-        				<div class="load-row '+(row.active ? 'active' : '')+'" data-id="'+property+'">\
+        				<div class="load-row '+(row.active ? 'active' : '')+'" data-id="'+property+'" data-name="'+row.set_name+'" data-autoload="'+row.autoload+'">\
         					<span>'+row.set_name+'</span>\
         					<label><input type="checkbox" name="autoload" class="autoload-radio" value="'+property+'" '+(row.autoload ? 'checked' : '')+'> Autoload</label>\
-                            '+(row.active ? '<button class="set-save" data-name="'+row.set_name+'">Save</button>' : '')+'\
+                            '+(row.active ? '<button class="set-save">Save</button>' : '')+'\
         					<button class="set-load">Load</button>\
         					<img class="set-delete" src="images/delete_16.png">\
         				</div>';
@@ -101,8 +101,9 @@ var Sets = (function () {
         		var loadbtns = document.getElementsByClassName('set-save');
         		for (var i=0; i < loadbtns.length; i++) {
         			loadbtns[i].addEventListener('click', function () {
-        				var name = this.dataset.name;
-        				Sets.save(name);
+        				var name = this.parentNode.dataset.name;
+        				var auto = this.parentNode.dataset.autoload == 1 ? 1 : 0;
+        				Sets.save(name, auto);
         			});
         		}
 
@@ -130,8 +131,8 @@ var Sets = (function () {
             chrome.storage.sync.get(null, function (sets) {
         		for (var property in sets) {
         			if (sets.hasOwnProperty(property)) {
-        				if (id && property == id) sets[property].autoload = true;
-        				else sets[property].autoload = false;
+        				if (id && property == id) sets[property].autoload = 1;
+        				else sets[property].autoload = 0;
         			}
         		}
         		chrome.storage.sync.set(sets, function () {
