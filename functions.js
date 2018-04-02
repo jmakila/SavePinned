@@ -138,6 +138,9 @@ var Sets = (function () {
         			window.location.href = "popup.html";
         		});
         	});
+        },
+        clearActive: function () {
+            set_active();
         }
     }
 })();
