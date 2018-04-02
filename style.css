@@ -1,5 +1,5 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-size: 12pt; font-family: Calibri; color: #333; }
+body { font-size: 12pt; font-family: Calibri; color: #333; width: 486px; }
 h2 { font-size: 1.1em; padding: 0.3em; background-color: #eee; }
 h2 span { font-weight: normal; font-style: italic; color: #999; float: right; font-size: 0.8em; line-height: 1.5em; }
 p { padding: 0.5em; }
@@ -10,7 +10,7 @@ button:active { background-color: #af912c; }
 #load-area { max-height: 300px; overflow: auto; }
 #placeholder { padding: 1em; text-align: center; font-style: italic; color: #aaa; }
 .load-row { padding: 0.5em; display: flex; width: 100%; border-bottom: 1px solid #eee; }
-.load-row span { font-size: 1em; line-height: 2em; height: 2em; width: 100%; }
+.load-row span { font-size: 1em; line-height: 2em; height: 2em; width: 100%; overflow: hidden; white-space: nowrap; }
 .load-row img { float: right; margin: 0.5em 0.5em 0.5em 1em; }
 .load-row label {
 	width: 30%;
@@ -18,4 +18,11 @@ button:active { background-color: #af912c; }
 }
 .load-row label input {
 	vertical-align: -2px;
+}
+.load-row.active {
+	background-color: #dfe8f5;
+}
+.load-row.active span {
+	width: 73%;
+	font-weight: bold;
 }
