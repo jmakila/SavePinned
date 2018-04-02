@@ -78,7 +78,7 @@ var Sets = (function () {
         					<label><input type="checkbox" name="autoload" class="autoload-radio" value="'+property+'" '+(row.autoload ? 'checked' : '')+'> Autoload</label>\
                             '+(row.active ? '<button class="set-save">Save</button>' : '')+'\
         					<button class="set-load">Load</button>\
-        					<img class="set-delete" src="images/delete_16.png">\
+        					<button class="set-delete">Del</button>\
         				</div>';
         				var area = document.getElementById('load-area');
         				area.insertAdjacentHTML('beforeend', template);
