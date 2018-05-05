@@ -1,3 +1,2 @@
-chrome.windows.onCreated.addListener(function (win) {
-	Sets.autoLoad(win.id);
-});
+chrome.windows.onCreated.removeListener(listener);
+chrome.windows.onCreated.addListener(listener);

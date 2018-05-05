@@ -1,2 +1,6 @@
 // autoloading tab set
-Sets.autoLoad(chrome.windows.WINDOW_ID_CURRENT);
+chrome.storage.local.clear();
+chrome.windows.getCurrent(function (win) {
+	// TODO why does this amount to "winid" in the Storage Area ???
+	Sets.autoLoad(win.id);
+});
