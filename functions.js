@@ -40,18 +40,20 @@ var Sets = (function () {
         		}
         	});
         },
-        load: function (id) {
+        load: function (id, winid) {
             chrome.storage.sync.get(id, function (set) {
         		var tabs = set[id].tabs;
         		chrome.tabs.query({
         			pinned: true,
-        			currentWindow: true
+        			//currentWindow: true,
+                    windowId: winid
         		}, function (cutabs) {
         			for (ind in cutabs) {
         				chrome.tabs.remove(cutabs[ind].id);
         			}
         			for (inx in tabs) {
         				chrome.tabs.create({
+                            windowId: winid, // tähän JOS
         					url: tabs[inx],
         					active: false,
         					pinned: true
@@ -92,7 +94,7 @@ var Sets = (function () {
         		for (var i=0; i < loadbtns.length; i++) {
         			loadbtns[i].addEventListener('click', function () {
         				var id = this.parentNode.dataset.id;
-        				Sets.load(id);
+        				Sets.load(id, chrome.windows.WINDOW_ID_CURRENT);
         			});
         		}
 
@@ -141,6 +143,28 @@ var Sets = (function () {
         },
         clearActive: function () {
             set_active();
+        },
+        autoLoad: function (winid) {
+            chrome.tabs.query({
+                pinned: true,
+                windowId: winid
+            }, function (cutabs) {
+                if (!cutabs.length) {
+                    chrome.storage.sync.get(null, function (sets) {
+                		var autoloaded = false;
+                		for (var property in sets) {
+                			if (sets.hasOwnProperty(property)) {
+                				var set = sets[property];
+                				if (set.autoload == 1) {
+                					autoloaded = true;
+                					Sets.load(property, winid);
+                				}
+                			}
+                		}
+                		if (!autoloaded) Sets.clearActive();
+                	});
+                } else Sets.clearActive();
+            });
         }
     }
 })();

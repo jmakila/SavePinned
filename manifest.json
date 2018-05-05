@@ -27,6 +27,6 @@
   },
 
   "background": {
-    "scripts": ["functions.js", "background.js"]
+    "scripts": ["functions.js", "background.js", "oncreate.js"]
   }
 }
