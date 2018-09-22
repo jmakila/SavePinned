@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Save Pinned Tabs",
   "short_name": "Save Pinned",
-  "version": "1.0.0",
+  "version": "1.0.3",
 
   "description": "Save your current pinned tabs.",
   "icons": {
