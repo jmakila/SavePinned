@@ -67,7 +67,7 @@ var Sets = (function () {
         	});
         },
         delete: function (id) {
-            var conf = confirm("Do you really want to delete this tab set?");
+          var conf = confirm("Do you really want to delete this tab set?");
         	if (conf) chrome.storage.sync.remove(id, function () {
         		window.location.href = "popup.html";
         	});
@@ -76,24 +76,24 @@ var Sets = (function () {
             chrome.storage.sync.get(null, function (sets) {
                 var winid = windowId;
                 chrome.storage.local.get('activeTabs', function (result) {
-                    var active = result.activeTabs[winid];
-            		for (var property in sets) {
-            			if (sets.hasOwnProperty(property)) {
-            				var row = sets[property];
-            				var template = '\
-            				<div class="load-row '+(active === property ? 'active' : '')+'" data-id="'+property+'" data-name="'+row.set_name+'" data-autoload="'+row.autoload+'">\
-            					<span>'+row.set_name+'</span>\
-            					<label><input type="checkbox" name="autoload" class="autoload-radio" value="'+property+'" '+(row.autoload ? 'checked' : '')+'> Autoload</label>\
-                                '+(active === property ? '<button class="set-save">Save</button>' : '')+'\
-            					<button class="set-load">Load</button>\
-            					<button class="set-delete">Del</button>\
-            				</div>';
-            				var area = document.getElementById('load-area');
-            				area.insertAdjacentHTML('beforeend', template);
-            				var plcelement = document.getElementById('placeholder')
-            				if (plcelement) plcelement.remove();
-            			}
-            		}
+                  var active = result.activeTabs[winid];
+              		for (var property in sets) {
+              			if (sets.hasOwnProperty(property)) {
+              				var row = sets[property];
+              				var template = '\
+              				<div class="load-row '+(active === property ? 'active' : '')+'" data-id="'+property+'" data-name="'+row.set_name+'" data-autoload="'+row.autoload+'">\
+              					<span>'+row.set_name+'</span>\
+              					<label><input type="checkbox" name="autoload" class="autoload-radio" value="'+property+'" '+(row.autoload ? 'checked' : '')+'> Autoload</label>\
+                                  '+(active === property ? '<button class="set-save">Save</button>' : '')+'\
+              					<button class="set-load">Load</button>\
+              					<button class="set-delete">Del</button>\
+              				</div>';
+              				var area = document.getElementById('load-area');
+              				area.insertAdjacentHTML('beforeend', template);
+              				var plcelement = document.getElementById('placeholder')
+              				if (plcelement) plcelement.remove();
+              			}
+              		}
 
             		// load buttons
             		var loadbtns = document.getElementsByClassName('set-load');
@@ -156,23 +156,30 @@ var Sets = (function () {
                 pinned: true,
                 windowId: winid
             }, function (cutabs) {
-                if (!cutabs.length) {
-                    chrome.storage.sync.get(null, function (sets) {
-                		var autoloaded = false;
-                		for (var property in sets) {
-                			if (sets.hasOwnProperty(property)) {
-                				var set = sets[property];
-                				if (set.autoload == 1) {
-                                    console.log('Autoloading tabs');
-                					autoloaded = true;
-                					Sets.load(property, winid);
-                                    break;
-                				}
-                			}
-                		}
-                		if (!autoloaded) Sets.clearActive(winid);
-                	});
-                } else Sets.clearActive(winid);
+                chrome.storage.sync.get(null, function (sets) {
+            		var autoloaded = false;
+            		for (var property in sets) {
+            			if (sets.hasOwnProperty(property)) {
+            				var set = sets[property];
+            				if (set.autoload == 1) { // there is a tab set to be autoloaded
+
+                                // remove current tabs
+                                if (cutabs.length) {
+                                    for (ind in cutabs) {
+                        				chrome.tabs.remove(cutabs[ind].id);
+                        			}
+                                }
+
+                                console.log('Autoloading tabs');
+            					autoloaded = true;
+            					Sets.load(property, winid);
+                                set_active(property, winid);
+                                break;
+            				}
+            			}
+            		}
+            		if (!autoloaded) Sets.clearActive(winid);
+            	});
             });
         }
     }
