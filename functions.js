@@ -162,18 +162,9 @@ var Sets = (function () {
             			if (sets.hasOwnProperty(property)) {
             				var set = sets[property];
             				if (set.autoload == 1) { // there is a tab set to be autoloaded
-
-                                // remove current tabs
-                                if (cutabs.length) {
-                                    for (ind in cutabs) {
-                        				chrome.tabs.remove(cutabs[ind].id);
-                        			}
-                                }
-
                                 console.log('Autoloading tabs');
             					autoloaded = true;
             					Sets.load(property, winid);
-                                set_active(property, winid);
                                 break;
             				}
             			}
