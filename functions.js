@@ -178,5 +178,8 @@ var Sets = (function () {
 
 var listener = function (win) {
     console.log('Listener activated');
-	Sets.autoLoad(win.id);
+    chrome.windows.getAll(function (wins) {
+    	if (wins.length > 1) console.log('Only autoload on the first window.');
+    	else Sets.autoLoad(win.id);
+	});
 }
