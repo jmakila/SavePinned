@@ -7,9 +7,8 @@ var Sets = (function () {
 
     var set_active = function (id, winid) {
         chrome.storage.local.get(['activeTabs'], function(result) {
-            var atabs = result.activeTabs;
-            if (atabs) atabs[winid] = id;
-            else atabs = {winid: id};
+            var atabs = result.activeTabs || {};
+            atabs[winid] = id;
             chrome.storage.local.set({'activeTabs': atabs}, function() {
                 console.log('Active tabset for window '+winid+' is set to '+id);
                 window.location.href = "popup.html";
@@ -50,19 +49,31 @@ var Sets = (function () {
         			pinned: true,
                     windowId: winid
         		}, function (cutabs) {
-        			for (ind in cutabs) {
-        				chrome.tabs.remove(cutabs[ind].id);
+                    var list = [];
+
+                    //console.log(cutabs);
+                    //return;
+
+        			for (ind of cutabs) {
+        				list.push(ind.id);
         			}
-        			for (inx in tabs) {
-        				chrome.tabs.create({
+
+                    console.log(list);
+
+                    // TODO for some reason can't always find tabs to remove!
+                    chrome.tabs.remove(list);
+
+                    for (inx of tabs) {
+                        chrome.tabs.create({
                             windowId: winid,
-        					url: tabs[inx],
-        					active: false,
-        					pinned: true
-        				});
-        			}
+                            url: inx,
+                            active: false,
+                            pinned: true
+                        });
+                    }
                     console.log('Loaded tabs');
                     set_active(id, winid);
+
         		});
         	});
         },
@@ -178,8 +189,7 @@ var Sets = (function () {
 
 var listener = function (win) {
     console.log('Listener activated');
-    chrome.windows.getAll(function (wins) {
-    	if (wins.length > 1) console.log('Only autoload on the first window.');
-    	else Sets.autoLoad(win.id);
-	});
+    if (win.type === 'normal') {
+        Sets.autoLoad(win.id);
+    }
 }
