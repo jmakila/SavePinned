@@ -51,16 +51,10 @@ var Sets = (function () {
         		}, function (cutabs) {
                     var list = [];
 
-                    //console.log(cutabs);
-                    //return;
-
         			for (ind of cutabs) {
         				list.push(ind.id);
         			}
 
-                    console.log(list);
-
-                    // TODO for some reason can't always find tabs to remove!
                     chrome.tabs.remove(list);
 
                     for (inx of tabs) {
@@ -71,9 +65,9 @@ var Sets = (function () {
                             pinned: true
                         });
                     }
+
                     console.log('Loaded tabs');
                     set_active(id, winid);
-
         		});
         	});
         },
@@ -87,7 +81,7 @@ var Sets = (function () {
             chrome.storage.sync.get(null, function (sets) {
                 var winid = windowId;
                 chrome.storage.local.get('activeTabs', function (result) {
-                  var active = result.activeTabs[winid];
+                  var active = result.activeTabs ? result.activeTabs[winid] : null;
               		for (var property in sets) {
               			if (sets.hasOwnProperty(property)) {
               				var row = sets[property];
@@ -186,10 +180,3 @@ var Sets = (function () {
         }
     }
 })();
-
-var listener = function (win) {
-    console.log('Listener activated');
-    if (win.type === 'normal') {
-        Sets.autoLoad(win.id);
-    }
-}
