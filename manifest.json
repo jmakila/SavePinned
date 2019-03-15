@@ -27,7 +27,6 @@
   },
 
   "background": {
-    "scripts": ["functions.js", "background.js"],
-    "persistent": false
+    "scripts": ["functions.js", "background.js"]
   }
 }
