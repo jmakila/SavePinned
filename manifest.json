@@ -4,6 +4,13 @@
   "short_name": "Save Pinned",
   "version": "1.0.5",
 
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "savepinnedtabs@buildyourweb.app",
+      "strict_min_version": "42.0"
+    }
+  },
+
   "description": "Save your current pinned tabs.",
   "icons": {
     "128": "images/icon_128.png",
@@ -11,10 +18,7 @@
     "32": "images/icon_32.png"
   },
 
-  "permissions": [
-    "tabs",
-    "storage"
-  ],
+  "permissions": ["tabs", "storage"],
 
   "browser_action": {
     "default_icon": {
@@ -27,11 +31,7 @@
   },
 
   "background": {
-    "scripts": [
-      "lib/browser-polyfill.js", 
-      "functions.js", 
-      "background.js"
-    ],
+    "scripts": ["lib/browser-polyfill.js", "functions.js", "background.js"],
     "persistent": false
   }
 }
