@@ -1,13 +1,13 @@
 // autoloading tab set
-chrome.storage.local.clear();
+browser.storage.local.clear();
 
-// chrome.windows.getCurrent(function (win) {
+// browser.windows.getCurrent(function (win) {
 // 	Sets.autoLoad(win.id);
 // });
 
 var listener = function (win) {
     console.log('Listener activated');
-    chrome.windows.getAll(null, function (wins) {
+    browser.windows.getAll(null, function (wins) {
         if (wins.length < 2 && win.type === 'normal') {
             Sets.autoLoad(win.id);
         }
@@ -15,5 +15,5 @@ var listener = function (win) {
 }
 
 // will this always fire at start
-chrome.windows.onCreated.removeListener(listener);
-chrome.windows.onCreated.addListener(listener);
+browser.windows.onCreated.removeListener(listener);
+browser.windows.onCreated.addListener(listener);

@@ -1,15 +1,15 @@
 var Sets = (function () {
 
     var windowId = null;
-    chrome.windows.getCurrent(function (win) {
+    browser.windows.getCurrent(function (win) {
         windowId = win.id;
     });
 
     var set_active = function (id, winid) {
-        chrome.storage.local.get(['activeTabs'], function(result) {
+        browser.storage.local.get(['activeTabs'], function(result) {
             var atabs = result.activeTabs || {};
             atabs[winid] = id;
-            chrome.storage.local.set({'activeTabs': atabs}, function() {
+            browser.storage.local.set({'activeTabs': atabs}, function() {
                 console.log('Active tabset for window '+winid+' is set to '+id);
                 window.location.href = "popup.html";
             });
@@ -19,7 +19,7 @@ var Sets = (function () {
     return {
         save: function (name, autoload) {
             var urilist = [];
-        	chrome.tabs.query({
+        	browser.tabs.query({
         		pinned: true,
         		currentWindow: true
         	}, function (tabs) {
@@ -34,7 +34,7 @@ var Sets = (function () {
         				autoload: autoload || 0,
         				tabs: urilist
         			};
-        			chrome.storage.sync.set(saveObj, function () {
+        			browser.storage.sync.set(saveObj, function () {
         				set_active(uid, windowId);
         			});
         		} else {
@@ -43,9 +43,9 @@ var Sets = (function () {
         	});
         },
         load: function (id, winid) {
-            chrome.storage.sync.get(id, function (set) {
+            browser.storage.sync.get(id, function (set) {
         		var tabs = set[id].tabs;
-        		chrome.tabs.query({
+        		browser.tabs.query({
         			pinned: true,
                     windowId: winid
         		}, function (cutabs) {
@@ -55,10 +55,10 @@ var Sets = (function () {
         				list.push(ind.id);
         			}
 
-                    chrome.tabs.remove(list);
+                    browser.tabs.remove(list);
 
                     for (inx of tabs) {
-                        chrome.tabs.create({
+                        browser.tabs.create({
                             windowId: winid,
                             url: inx,
                             active: false,
@@ -73,14 +73,14 @@ var Sets = (function () {
         },
         delete: function (id) {
           var conf = confirm("Do you really want to delete this tab set?");
-        	if (conf) chrome.storage.sync.remove(id, function () {
+        	if (conf) browser.storage.sync.remove(id, function () {
         		window.location.href = "popup.html";
         	});
         },
         get: function () {
-            chrome.storage.sync.get(null, function (sets) {
+            browser.storage.sync.get(null, function (sets) {
                 var winid = windowId;
-                chrome.storage.local.get('activeTabs', function (result) {
+                browser.storage.local.get('activeTabs', function (result) {
                   var active = result.activeTabs ? result.activeTabs[winid] : null;
               		for (var property in sets) {
               			if (sets.hasOwnProperty(property)) {
@@ -141,14 +141,14 @@ var Sets = (function () {
         	});
         },
         setAutoload: function (id) {
-            chrome.storage.sync.get(null, function (sets) {
+            browser.storage.sync.get(null, function (sets) {
         		for (var property in sets) {
         			if (sets.hasOwnProperty(property)) {
         				if (id && property == id) sets[property].autoload = 1;
         				else sets[property].autoload = 0;
         			}
         		}
-        		chrome.storage.sync.set(sets, function () {
+        		browser.storage.sync.set(sets, function () {
         			window.location.href = "popup.html";
         		});
         	});
@@ -157,11 +157,11 @@ var Sets = (function () {
             set_active(null, winid);
         },
         autoLoad: function (winid) {
-            chrome.tabs.query({
+            browser.tabs.query({
                 pinned: true,
                 windowId: winid
             }, function (cutabs) {
-                chrome.storage.sync.get(null, function (sets) {
+                browser.storage.sync.get(null, function (sets) {
             		var autoloaded = false;
             		for (var property in sets) {
             			if (sets.hasOwnProperty(property)) {
