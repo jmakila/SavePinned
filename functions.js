@@ -1,7 +1,7 @@
 var Sets = (function () {
 
     var windowId = null;
-    browser.windows.getCurrent(function (win) {
+    browser.windows.getCurrent().then(function (win) {
         windowId = win.id;
     });
 
