@@ -6,10 +6,10 @@ var Sets = (function () {
     });
 
     var set_active = function (id, winid) {
-        browser.storage.local.get(['activeTabs'], function(result) {
+        browser.storage.local.get(['activeTabs']).then(function(result) {
             var atabs = result.activeTabs || {};
             atabs[winid] = id;
-            browser.storage.local.set({'activeTabs': atabs}, function() {
+            browser.storage.local.set({'activeTabs': atabs}).then(function() {
                 console.log('Active tabset for window '+winid+' is set to '+id);
                 window.location.href = "popup.html";
             });
@@ -22,7 +22,7 @@ var Sets = (function () {
         	browser.tabs.query({
         		pinned: true,
         		currentWindow: true
-        	}, function (tabs) {
+        	}).then(function (tabs) {
         		for (var i = 0; i < tabs.length; i++) {
         			urilist[i] = tabs[i].url;
         		}
@@ -34,7 +34,7 @@ var Sets = (function () {
         				autoload: autoload || 0,
         				tabs: urilist
         			};
-        			browser.storage.sync.set(saveObj, function () {
+        			browser.storage.sync.set(saveObj).then(function () {
         				set_active(uid, windowId);
         			});
         		} else {
@@ -43,12 +43,12 @@ var Sets = (function () {
         	});
         },
         load: function (id, winid) {
-            browser.storage.sync.get(id, function (set) {
+            browser.storage.sync.get(id).then(function (set) {
         		var tabs = set[id].tabs;
         		browser.tabs.query({
         			pinned: true,
                     windowId: winid
-        		}, function (cutabs) {
+        		}).then(function (cutabs) {
                     var list = [];
 
         			for (ind of cutabs) {
@@ -73,14 +73,14 @@ var Sets = (function () {
         },
         delete: function (id) {
           var conf = confirm("Do you really want to delete this tab set?");
-        	if (conf) browser.storage.sync.remove(id, function () {
+        	if (conf) browser.storage.sync.remove(id).then(function () {
         		window.location.href = "popup.html";
         	});
         },
         get: function () {
-            browser.storage.sync.get(null, function (sets) {
+            browser.storage.sync.get(null).then(function (sets) {
                 var winid = windowId;
-                browser.storage.local.get('activeTabs', function (result) {
+                browser.storage.local.get('activeTabs').then(function (result) {
                   var active = result.activeTabs ? result.activeTabs[winid] : null;
               		for (var property in sets) {
               			if (sets.hasOwnProperty(property)) {
@@ -141,14 +141,14 @@ var Sets = (function () {
         	});
         },
         setAutoload: function (id) {
-            browser.storage.sync.get(null, function (sets) {
+            browser.storage.sync.get(null).then(function (sets) {
         		for (var property in sets) {
         			if (sets.hasOwnProperty(property)) {
         				if (id && property == id) sets[property].autoload = 1;
         				else sets[property].autoload = 0;
         			}
         		}
-        		browser.storage.sync.set(sets, function () {
+        		browser.storage.sync.set(sets).then(function () {
         			window.location.href = "popup.html";
         		});
         	});
@@ -160,8 +160,8 @@ var Sets = (function () {
             browser.tabs.query({
                 pinned: true,
                 windowId: winid
-            }, function (cutabs) {
-                browser.storage.sync.get(null, function (sets) {
+            }).then(function (cutabs) {
+                browser.storage.sync.get(null).then(function (sets) {
             		var autoloaded = false;
             		for (var property in sets) {
             			if (sets.hasOwnProperty(property)) {
