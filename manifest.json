@@ -31,6 +31,7 @@
   },
 
   "background": {
-    "scripts": ["lib/browser-polyfill.js", "functions.js", "background.js"]
+    "scripts": ["lib/browser-polyfill.js", "functions.js", "background.js"],
+    "persistent": false
   }
 }
