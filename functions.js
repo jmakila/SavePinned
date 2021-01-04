@@ -72,10 +72,15 @@ var Sets = (function () {
         	});
         },
         delete: function (id) {
-          var conf = confirm("Do you really want to delete this tab set?");
-        	if (conf) browser.storage.sync.remove(id).then(function () {
-        		window.location.href = "popup.html";
-        	});
+			swal({
+				buttons: ['Cancel', 'Delete'],
+				className: 'confirm-delete-dialog',
+				text: "Do you really want to delete this tab set?",
+			}).then(function (conf) {
+				if (conf) browser.storage.sync.remove(id).then(function () {
+					window.location.href = "popup.html";
+				});
+			});
         },
         get: function () {
             browser.storage.sync.get(null).then(function (sets) {
