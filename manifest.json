@@ -2,12 +2,12 @@
   "manifest_version": 2,
   "name": "Save Pinned Tabs",
   "short_name": "Save Pinned",
-  "version": "1.0.5",
+  "version": "1.1.0",
 
   "browser_specific_settings": {
     "gecko": {
       "id": "savepinnedtabs@buildyourweb.app",
-      "strict_min_version": "42.0"
+      "strict_min_version": "57.0"
     }
   },
 
