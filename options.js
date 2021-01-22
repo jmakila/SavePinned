@@ -24,10 +24,13 @@ function handleImport() {
   var reader = new FileReader();
 
   reader.onload = function () {
-    Sets.import(JSON.parse(reader.result))
+    var importData = JSON.parse(reader.result);
+    Sets.import(importData)
       .then(function () {
+        var importedCount = Object.keys(importData).length;
+
         swal({
-          text: "Successfully Imported Tab Sets",
+          text: "Successfully Imported " + importedCount + " Tab Sets",
         });
 
         importInput.value = "";
