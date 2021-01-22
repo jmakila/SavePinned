@@ -1,0 +1,16 @@
+{
+  "$id": "sets",
+  "type": "object",
+  "patternProperties": {
+    ".*": {
+      "type": "object",
+      "properties": {
+        "autoload": { "type": "integer", "minimum": 0, "maximum": 1 },
+        "set_name": { "type": "string" },
+        "tabs": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["autoload", "set_name", "tabs"],
+      "additionalProperties": false
+    }
+  }
+}

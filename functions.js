@@ -182,6 +182,22 @@ var Sets = (function () {
             		if (!autoloaded) Sets.clearActive(winid);
             	});
             });
-        }
+		},
+		export: function () {
+			var fileName = "SavePinnedTabs_export_" + new Date().toISOString().replaceAll(/[.:]/g, "-") + '.json';
+			
+			return browser.storage.sync.get(null).then(function (sets) {
+				var fileText = JSON.stringify(sets);
+				var fileBlob = new Blob([fileText], { type: "application/json;charset=utf-8" });
+				saveAs(fileBlob, fileName);
+			});
+		},
+		import: function (sets) {
+			if (!validate20(sets)) {
+				return Promise.reject();
+			}
+
+			return browser.storage.sync.set(sets);
+		},
     }
 })();
