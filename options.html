@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Save Pinned Tabs - Options</title>
+    <meta charset="utf-8" />
+    <link href="style.css" rel="stylesheet">
+    <style>
+      .container {
+        padding: 10px 20px 10px 20px;
+      }
+      .section {
+        margin: 30px 10px 30px 10px;
+      }
+      .color-red {
+        color: red;
+      }
+    </style>
+    <script src="lib/browser-polyfill.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Save Pinned Tabs - Options</h1>
+      <hr>
+      <div class="section">
+        <h2>Export Tab Sets</h1>
+        <p>Save all your current tab sets to a file.</p>
+        <button id="export-button">Export</button>
+      </div>
+
+      <div class="section">
+        <h2>Import Tab Sets</h1>
+        <p>Import tab sets from a previous export.</p>
+        <p class="color-red">Warning: this will overwrite any existing tab sets with the same name.</p>
+        <input id="import-input" type="file" name="importfile" accept="application/json" />
+        <button id="import-button">Import</button>
+      </div>
+
+      <script src="lib/FileSaver.min.js"></script>
+      <script src="lib/sweetalert.min.js"></script>
+      <script src="lib/validate_sets_schema.min.js"></script>
+      <script src="functions.js"></script>
+      <script src="options.js"></script>
+    </div>
+  </body>
+</html>

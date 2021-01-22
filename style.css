@@ -26,7 +26,8 @@ button.set-delete { background-color: #ff8a65; }
 button.set-delete:hover { background-color: #ff7043; }
 
 /* Sweet Alert */
-.swal-button { padding: 0 24px !important; border-radius: 2px !important; }
+.swal-button { padding: 0 24px !important; border-radius: 2px !important; background-image: none !important; }
+.swal-button:hover {color: white !important; }
 .swal-modal { border-radius: 2px !important; }
 .swal-overlay--show-modal .swal-modal { animation: unset !important; }
 .confirm-delete-dialog .swal-button--confirm { background-color: #ff8a65; }
