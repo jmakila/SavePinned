@@ -50,3 +50,13 @@ rm validate_sets.js
 - Run the extension within the new profile, saving data to the profile
 
   `npm run run-firefox`
+
+### Build
+
+- Set the version number in package.json
+
+- Build the extension
+
+  `npm run build`
+
+- The extension will be built into `web-ext-artifacts/save_pinned_tabs-X.Y.Z.zip`
