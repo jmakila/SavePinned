@@ -34,8 +34,8 @@ rm validate_sets.js
 ### Launch extension in isolated chromium profile
 
 - Create a new Chromium profile:
-
-  `npm run create-profile-chromium`
+  - Linux: `npm run create-profile-chromium`
+  - Mac OS: `npm run create-profile-chromium-mac`
 
 - Run the extension within the new profile, saving data to the profile
 
@@ -44,12 +44,14 @@ rm validate_sets.js
 ### Launch extension in isolated firefox profile
 
 - Create the new Firefox profile:
-
-  `npm run create-profile-firefox`
+  - Linux: `npm run create-profile-firefox`
+  - Mac OS: `npm run create-profile-firefox-mac`
 
 - Run the extension within the new profile, saving data to the profile
 
   `npm run run-firefox`
+
+  **Note: due to a bug in Firefox, this will not work properly on Mac OS and the extension must be installed and run manually**
 
 ### Build
 
