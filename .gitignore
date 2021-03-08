@@ -1,2 +1,7 @@
 .idea
 extra
+.DS_Store
+node_modules
+
+savepinned-chromium
+savepinned-firefox
