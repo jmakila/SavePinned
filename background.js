@@ -1,8 +1,11 @@
 // autoloading tab set
 browser.storage.local.clear();
 
-browser.runtime.onStartup.addListener(function () {
-    browser.windows.getCurrent().then(function (win) {
-        Sets.autoLoad(win.id);
-    });
-});
+if (!browser.windows.onCreated.hasListener(Autoload.windowCreated)) {
+  browser.windows.onCreated.addListener(Autoload.windowCreated);
+}
+
+// Workaround:
+//  browser.windows.onCreated does not consistently fire in all browsers
+//  on the first window launched
+Autoload.manual();

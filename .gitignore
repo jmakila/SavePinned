@@ -1,2 +1,8 @@
 .idea
 extra
+.DS_Store
+node_modules
+
+savepinned-profile-*
+
+dist

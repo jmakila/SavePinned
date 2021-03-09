@@ -201,3 +201,41 @@ var Sets = (function () {
 		},
     }
 })();
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+var Autoload = (function () {
+  let ranOnce = false;
+
+  return {
+    windowCreated: function (window) {
+      console.log("windowCreated");
+      ranOnce = true;
+
+      browser.windows.getAll(null).then(function (windows) {
+        if (windows.length < 2 && window.type === "normal") {
+          Sets.autoLoad(window.id);
+        }
+      });
+    },
+
+    manual: async function () {
+      // Brave workaround:
+      //  wait a few milliseconds for browser.windows.onCreated to fire
+      //  before checking if we need to manually run windowCreated
+      //  to ensure brave does not load tab set twice
+      await sleep(50);
+
+      // Firefox workaround:
+      //  browser.windows.onCreated does not fire reliably in Firefox
+      //  so we run autoload manually, only if it has not been run before
+      if (!ranOnce) {
+        browser.windows.getCurrent().then(function (window) {
+          Autoload.windowCreated(window);
+        });
+      }
+    },
+  };
+})();
