@@ -3,7 +3,6 @@ extra
 .DS_Store
 node_modules
 
-savepinned-chromium
-savepinned-firefox
+savepinned-profile-*
 
-web-ext-artifacts
+dist

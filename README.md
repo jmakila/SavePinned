@@ -10,7 +10,11 @@ A chrome extension to save and load groups of pinned tabs
 
 ## Installation
 
-- [Chrome Web Store](https://chrome.google.com/webstore/detail/save-pinned-tabs/anmidgajdonkgmmilbccfefkfieajakd)
+- [Chrome](https://chrome.google.com/webstore/detail/save-pinned-tabs/anmidgajdonkgmmilbccfefkfieajakd)
+
+- [Firefox](https://addons.mozilla.org/en-US/firefox/addon/save-pinned-tabs/)
+
+- [Edge](https://microsoftedge.microsoft.com/addons/detail/ahejjkehekfnjbpaaochgfbmbajocdkn)
 
 ## Development
 
@@ -61,4 +65,4 @@ rm validate_sets.js
 
   `npm run build`
 
-- The extension will be built into `web-ext-artifacts/save_pinned_tabs-X.Y.Z.zip`
+- The extension archive will be saved to `dist/save_pinned_tabs-X.Y.Z.zip`
