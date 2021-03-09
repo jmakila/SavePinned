@@ -4,10 +4,14 @@
   "description": "A chrome extension to save and load groups of pinned tabs",
   "main": "background.js",
   "scripts": {
-    "create-profile-chromium": "chromium --user-data-dir=savepinned-chromium --first-run",
-    "create-profile-firefox": "firefox -CreateProfile savepinned-firefox",
-    "run-chromium": "web-ext run -t chromium --keep-profile-changes --pre-install --chromium-profile savepinned-chromium",
-    "run-firefox": "web-ext run -t firefox-desktop --keep-profile-changes --pre-install --firefox-profile savepinned-firefox",
+    "create-profile-chromium": "chromium --user-data-dir=savepinned-profile-chromium --first-run",
+    "create-profile-firefox": "firefox -CreateProfile savepinned-profile-firefox",
+    "create-profile-brave": "brave-browser --user-data-dir=savepinned-profile-brave --first-run",
+    "create-profile-vivaldi": "vivaldi --user-data-dir=savepinned-profile-vivaldi --first-run",
+    "run-chromium": "web-ext run -t chromium --keep-profile-changes --pre-install --chromium-profile savepinned-profile-chromium -v",
+    "run-firefox": "web-ext run -t firefox-desktop --keep-profile-changes --pre-install --firefox-profile savepinned-profile-firefox -v --bc",
+    "run-brave": "web-ext run -t chromium --chromium-binary=brave-browser --keep-profile-changes --pre-install --chromium-profile savepinned-profile-brave",
+    "run-vivaldi": "web-ext run -t chromium --chromium-binary=vivaldi --keep-profile-changes --pre-install --chromium-profile savepinned-profile-vivaldi",
     "build": "web-ext build --overwrite-dest -a dist"
   },
   "repository": {
