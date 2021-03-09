@@ -6,4 +6,4 @@ node_modules
 savepinned-chromium
 savepinned-firefox
 
-web-ext-artifacts
+dist

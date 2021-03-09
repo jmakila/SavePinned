@@ -8,7 +8,7 @@
     "create-profile-firefox": "firefox -CreateProfile savepinned-firefox",
     "run-chromium": "web-ext run -t chromium --keep-profile-changes --pre-install --chromium-profile savepinned-chromium",
     "run-firefox": "web-ext run -t firefox-desktop --keep-profile-changes --pre-install --firefox-profile savepinned-firefox",
-    "build": "web-ext build"
+    "build": "web-ext build -a dist"
   },
   "repository": {
     "type": "git",
