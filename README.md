@@ -29,33 +29,27 @@ The following node modules are required for development
 
 After modifying the schema of the sets object, update the JSON-Schema definition in `schema/sets.json`, then run the following commands to regenerate the validation script:
 
-```
-ajv compile -s schema/sets.json -o validate_sets.js && \
-browserify validate_sets.js --standalone validate20 > lib/validate_sets_schema.min.js && \
-rm validate_sets.js
-```
+`npm run compile-sets-schema`
 
-### Launch extension in isolated chromium profile
+### Launch extension in isolated browser profile
 
-- Create a new Chromium profile:
-  - Linux: `npm run create-profile-chromium`
-  - Mac OS: `npm run create-profile-chromium-mac`
+- Create a new browser profile:
 
-- Run the extension within the new profile, saving data to the profile
-
-  `npm run run-chromium`
-
-### Launch extension in isolated firefox profile
-
-- Create the new Firefox profile:
-  - Linux: `npm run create-profile-firefox`
-  - Mac OS: `npm run create-profile-firefox-mac`
+  - Chromium: `npm run new-profile:chromium`
+  - Chromium Mac OS: `npm run new-profile:chromium-mac`
+  - Firefox: `npm run new-profile:firefox`
+  - Firefox Mac OS: `npm run new-profile:firefox-mac`
+  - Brave: `npm run new-profile:brave`
+  - Brave: `npm run new-profile:vivaldi`
 
 - Run the extension within the new profile, saving data to the profile
 
-  `npm run run-firefox`
-
-  **Note: due to a bug in Firefox, this will not work properly on Mac OS and the extension must be installed and run manually**
+  - Chromium: `npm run run:chromium`
+  - Chromium Mac OS: `npm run run:chromium-mac`
+  - Firefox: `npm run run:firefox`
+  - Firefox Mac OS: `npm run run:firefox-mac`
+  - Brave: `npm run run:brave`
+  - Brave: `npm run run:vivaldi`
 
 ### Build
 

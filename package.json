@@ -4,18 +4,19 @@
   "description": "A chrome extension to save and load groups of pinned tabs",
   "main": "background.js",
   "scripts": {
-    "create-profile-chromium": "chromium --user-data-dir=savepinned-profile-chromium --first-run",
-    "create-profile-chromium-mac": "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --user-data-dir=savepinned-profile-chromium --first-run",
-    "create-profile-firefox": "firefox -CreateProfile savepinned-profile-firefox",
-    "create-profile-firefox-mac": "/Applications/Firefox.app/Contents/MacOS/firefox-bin -CreateProfile savepinned-profile-firefox",
-    "create-profile-brave": "brave-browser --user-data-dir=savepinned-profile-brave --first-run",
-    "create-profile-vivaldi": "vivaldi --user-data-dir=savepinned-profile-vivaldi --first-run",
-    "run-chromium": "web-ext run -t chromium --keep-profile-changes --pre-install --chromium-profile savepinned-profile-chromium -v",
-    "run-firefox": "web-ext run -t firefox-desktop --keep-profile-changes --pre-install --firefox-profile savepinned-profile-firefox -v --bc",
-    "run-firefox-mac": "web-ext run -t firefox-desktop --firefox-binary=/Applications/Firefox\\ Developer\\ Edition.app/Contents/MacOS/firefox-bin --keep-profile-changes --pre-install --firefox-profile savepinned-profile-firefox -v --bc",
-    "run-brave": "web-ext run -t chromium --chromium-binary=brave-browser --keep-profile-changes --pre-install --chromium-profile savepinned-profile-brave",
-    "run-vivaldi": "web-ext run -t chromium --chromium-binary=vivaldi --keep-profile-changes --pre-install --chromium-profile savepinned-profile-vivaldi",
-    "build": "web-ext build --overwrite-dest -a dist"
+    "new-profile:chromium": "chromium --user-data-dir=savepinned-profile-chromium --first-run",
+    "new-profile:chromium-mac": "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --user-data-dir=savepinned-profile-chromium --first-run",
+    "new-profile:firefox": "firefox -CreateProfile savepinned-profile-firefox",
+    "new-profile:firefox-mac": "/Applications/Firefox.app/Contents/MacOS/firefox-bin -CreateProfile savepinned-profile-firefox",
+    "new-profile:brave": "brave-browser --user-data-dir=savepinned-profile-brave --first-run",
+    "new-profile:vivaldi": "vivaldi --user-data-dir=savepinned-profile-vivaldi --first-run",
+    "run:chromium": "web-ext run -t chromium --keep-profile-changes --pre-install --chromium-profile savepinned-profile-chromium -v",
+    "run:firefox": "web-ext run -t firefox-desktop --keep-profile-changes --pre-install --firefox-profile savepinned-profile-firefox -v --bc",
+    "run:firefox-mac": "web-ext run -t firefox-desktop --firefox-binary=/Applications/Firefox\\ Developer\\ Edition.app/Contents/MacOS/firefox-bin --keep-profile-changes --pre-install --firefox-profile savepinned-profile-firefox -v --bc",
+    "run:brave": "web-ext run -t chromium --chromium-binary=brave-browser --keep-profile-changes --pre-install --chromium-profile savepinned-profile-brave",
+    "run:vivaldi": "web-ext run -t chromium --chromium-binary=vivaldi --keep-profile-changes --pre-install --chromium-profile savepinned-profile-vivaldi",
+    "build": "web-ext build --overwrite-dest -a dist",
+    "compile-sets-schema": "ajv compile -s schema/sets.json -o validate_sets.js && browserify validate_sets.js --standalone validate20 > lib/validate_sets_schema.min.js && rm validate_sets.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,8 @@
   },
   "homepage": "https://github.com/jmakila/SavePinned",
   "devDependencies": {
+    "ajv": "^7.2.1",
+    "browserify": "^17.0.0",
     "web-ext": "^5.5.0"
   }
 }
