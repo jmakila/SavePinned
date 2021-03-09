@@ -15,7 +15,7 @@
     "run:firefox-mac": "web-ext run -t firefox-desktop --firefox-binary=/Applications/Firefox\\ Developer\\ Edition.app/Contents/MacOS/firefox-bin --keep-profile-changes --pre-install --firefox-profile savepinned-profile-firefox -v --bc",
     "run:brave": "web-ext run -t chromium --chromium-binary=brave-browser --keep-profile-changes --pre-install --chromium-profile savepinned-profile-brave",
     "run:vivaldi": "web-ext run -t chromium --chromium-binary=vivaldi --keep-profile-changes --pre-install --chromium-profile savepinned-profile-vivaldi",
-    "build": "web-ext build --overwrite-dest -a dist",
+    "build": "web-ext build --overwrite-dest -a dist -i dist savepinned-profile-* .git node_modules",
     "compile-sets-schema": "ajv compile -s schema/sets.json -o validate_sets.js && browserify validate_sets.js --standalone validate20 > lib/validate_sets_schema.min.js && rm validate_sets.js"
   },
   "repository": {
