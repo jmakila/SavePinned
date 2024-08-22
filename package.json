@@ -31,6 +31,6 @@
   "devDependencies": {
     "ajv": "^7.2.1",
     "browserify": "^17.0.0",
-    "web-ext": "^5.5.0"
+    "web-ext": "^8.2.0"
   }
 }
