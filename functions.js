@@ -1,4 +1,7 @@
-var Sets = (function () {
+export var Sets = (function () {
+
+		var browser = chrome;
+
 
     var windowId = null;
     browser.windows.getCurrent().then(function (win) {
@@ -51,13 +54,13 @@ var Sets = (function () {
         		}).then(function (cutabs) {
                     var list = [];
 
-        			for (ind of cutabs) {
+        			for (var ind of cutabs) {
         				list.push(ind.id);
         			}
 
                     browser.tabs.remove(list);
 
-                    for (inx of tabs) {
+                    for (var inx of tabs) {
                         browser.tabs.create({
                             windowId: winid,
                             url: inx,
@@ -206,8 +209,10 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-var Autoload = (function () {
+export var Autoload = (function () {
   let ranOnce = false;
+	var browser = chrome;
+
 
   return {
     windowCreated: function (window) {
