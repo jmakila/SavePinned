@@ -59,7 +59,7 @@ After modifying the schema of the sets object, update the JSON-Schema definition
 ### Build
 
 - Set the version number in package.json
--
+
 - Set the version number in manifest.json
 
 - Build the extension
