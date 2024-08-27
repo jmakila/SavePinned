@@ -1,3 +1,5 @@
+import { Sets } from "./functions.js";
+
 var importInput = document.getElementById("import-input");
 var importButton = document.getElementById("import-button");
 var exportButton = document.getElementById("export-button");
