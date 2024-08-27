@@ -23,7 +23,7 @@ A chrome extension to save and load groups of pinned tabs
 
 ## Development
 
-## Requirements
+### Requirements
 
 The following node modules are required for development
 
