@@ -10,11 +10,16 @@ A chrome extension to save and load groups of pinned tabs
 
 ## Installation
 
-- [Chrome](https://chrome.google.com/webstore/detail/save-pinned-tabs/anmidgajdonkgmmilbccfefkfieajakd)
+- [Chrome Web Store](https://chrome.google.com/webstore/detail/save-pinned-tabs/anmidgajdonkgmmilbccfefkfieajakd)
 
-- [Firefox](https://addons.mozilla.org/en-US/firefox/addon/save-pinned-tabs/)
+- [Edge Addons](https://microsoftedge.microsoft.com/addons/detail/ahejjkehekfnjbpaaochgfbmbajocdkn)
 
-- [Edge](https://microsoftedge.microsoft.com/addons/detail/ahejjkehekfnjbpaaochgfbmbajocdkn)
+## Manual Installation
+  1. Download the latest zip file from [Releases](https://github.com/jmakila/SavePinned/releases)
+  2. Extract the zip file into a new directory
+  3. Open your chromium-based browser and navigate to `chrome://extensions`
+  4. Enable Developer Mode and click "Load Unpacked"
+  5. Select the new directory with the extracated zip file
 
 ## Development
 
