@@ -1,5 +1,9 @@
 # SavePinned
 
+> [!NOTE]
+> This project has migrated to [save-pinned-tabs/SavePinned](https://github.com/save-pinned-tabs/SavePinned).
+> Please visit that repository for the latest code and releases.
+
 A chrome extension to save and load groups of pinned tabs
 
 ## Features
